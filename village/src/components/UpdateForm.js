@@ -62,7 +62,7 @@ class UpdateForm extends Component {
 
   render() {
     return (
-      <div >
+      <div style={form} >
         <p>Here you can update the information for your smurfs.</p>
         <form style={form} onSubmit={this.handleSubmit}>
           <input
