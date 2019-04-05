@@ -6,6 +6,11 @@ import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
 import Header from './Header'
 
+const app={
+  fontFamily: 'Sniglet, cursive',
+  color: '#00A4D6',
+  
+}
 class App extends Component {
   constructor(props) {
     super(props);
@@ -31,21 +36,30 @@ class App extends Component {
       .then( response => {
         console.log(response)
         this.setState({ smurfs: response.data })
-        window.location.reload();
+        
       })
-      .catch(error => console.log(error))
+      .catch(error => console.log('You Smurfed Up',error))
+  }
+
+  deleteSmurf = id => {
+    axios.delete(`http://localhost:3333/smurfs/${id}`)
+      .then(response => {
+        this.setState({smurfs:response.data})
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
     return (
-      <div className="App">
+      <div style={app}>
       <Header/>
       <Route exact path="/" render={ (props) => {
-          return(<Smurfs {...props} smurfs={this.state.smurfs} />)
+          return(<Smurfs {...props} smurfs={this.state.smurfs} deleteSmurf={this.deleteSmurf} />)
         }} />
         <Route path="/SmurfForm" render={ (props) => {
           return(<SmurfForm {...props} addSmurf={this.addSmurf} />)
         }} />
+         
       </div>
     );
   }
