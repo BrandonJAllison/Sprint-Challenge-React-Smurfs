@@ -35,6 +35,11 @@ return (
             activeClassName="active-link">
             <span style={link}>Add Smurf</span>
         </NavLink>
+        <NavLink style={link}
+            to ='/UpdateForm'
+            activeClassName="active-link">
+            <span style={link}>Update Smurf</span>
+        </NavLink>
 
         
     </div>

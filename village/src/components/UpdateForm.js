@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 const form ={
   display: 'flex',
   flexDirection: 'column',
-  alignItems:'center',
-  textAlign: 'center'
+  alignItems:'center'
 }
 
 const input={
@@ -25,7 +24,7 @@ const button ={
   margin: '20px 0',
   boxShadow: '0px 8px 15px black'
 }
-class SmurfForm extends Component {
+class UpdateForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,30 +34,37 @@ class SmurfForm extends Component {
     };
   }
 
-  addSmurf = event => {
+  handleSubmit = event => {
     event.preventDefault();
-    this.props.addSmurf({
-      name: this.state.name,
-      age: this.state.age,
-      height: this.state.height
-    })
-      this.setState({
-      name: '',
-      age: '',
-      height: ''
+    let obj = this.props.smurfs.filter(obj => obj.name === this.state.name)[0];
+    let id;
+    if(obj === undefined){
+      id = 0;
+    }
+    else{
+      id = obj.id;
+    }
+    
+    this.props.updateSmurf(this.state, id);
+    alert("Smurf Updated")
+    this.setState({
+      
+        name: '',
+        age: '',
+        height: ''
+      
     });
-  }
+  };
 
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleInputChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   render() {
     return (
-      <div style={form}>
-        <p>Here you can add a new Smurf to the Villiage.</p>
-        <div>
-        <form style={form} onSubmit={this.addSmurf}>
+      <div >
+        <p>Here you can update the information for your smurfs.</p>
+        <form style={form} onSubmit={this.handleSubmit}>
           <input
             style={input}
             onChange={this.handleInputChange}
@@ -85,12 +91,11 @@ class SmurfForm extends Component {
             value={this.state.height}
             name="height"
           />
-          <button style={button} type="submit">Add to the village</button>
+          <button style={button} type="submit">Update Smurf</button>
         </form>
-        </div>
       </div>
     );
   }
 }
 
-export default SmurfForm;
+export default UpdateForm;
