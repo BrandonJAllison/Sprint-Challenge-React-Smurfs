@@ -8,7 +8,7 @@ HyperText Transfer Protocol
 
 3.  What does CRUD stand for?
 
-CRUD stands for Cread Read Update and Delete
+CRUD stands for Create Read Update and Delete
 
 4.  Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
 

@@ -21,12 +21,6 @@ let smurfs = [
     height: '8cm'
   },
   {
-    name: 'Brainy',
-    age: 211,
-    height: '5cm',
-    id: 0
-  },
-  {
     name: 'Smurfette',
     age: 122,
     height: '12cm',

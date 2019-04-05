@@ -27,7 +27,7 @@ class App extends Component {
       this.setState(() => ({ smurfs: response.data }));
     })
     .catch(error => {
-      console.error('Your smurfed up', error);
+      console.error('You smurfed up', error);
     })
   }
 
