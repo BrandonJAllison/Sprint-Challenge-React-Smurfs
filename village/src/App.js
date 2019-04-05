@@ -19,17 +19,25 @@ class App extends Component {
       this.setState(() => ({ smurfs: response.data }));
     })
     .catch(error => {
-      console.error(error);
+      console.error('Your smurfed up', error);
     })
   }
-  // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
-  // Notice what your map function is looping over and returning inside of Smurfs.
-  // You'll need to make sure you have the right properties on state and pass them down to props.
+
+  addSmurf = (smurf) => {
+    axios
+      .post(`http://localhost:3333/smurfs`, smurf )
+      .then( response => {
+        console.log(response)
+        this.setState({ smurfs: response.data })
+        window.location.reload();
+      })
+      .catch(error => console.log(error))
+  }
 
   render() {
     return (
       <div className="App">
-        <SmurfForm />
+        <SmurfForm addSmurf={this.addSmurf}/>
         <Smurfs smurfs={this.state.smurfs} />
       </div>
     );
